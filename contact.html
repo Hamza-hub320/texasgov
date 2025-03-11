@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="grid-container">
+        <header>
+            <h1>Contact Us</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="capital.html">Austin</a></li>
+                    <li><a href="irving.html">Irving</a></li>
+                    <li><a href="fortworth.html">Fort Worth</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <aside>
+            <h3>Contact Information</h3>
+            <ul>
+                <li><strong>Phone:</strong> (123) 456-7890</li>
+                <li><strong>Email:</strong> info@welcometotexas.com</li>
+                <li><strong>Office Hours:</strong> Mon-Fri, 9 AM - 5 PM</li>
+            </ul>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="capital.html">Learn about Austin</a></li>
+                <li><a href="irving.html">Discover Irving</a></li>
+                <li><a href="fortworth.html">Explore Fort Worth</a></li>
+            </ul>
+        </aside>
+        <main>
+            <section>
+                <h2>Get in Touch</h2>
+                <p>Have any questions about our cities or Texas? Please fill out the form below and we'll get back to you.</p>
+                <form action="" id="contactForm">
+                    <label for="firstName"> 
+                        First Name:
+                        <input type="text" id="firstName" name="first_name" required>
+                    </label>
+                    <label for="lastName">
+                        Last Name:
+                        <input type="text" id="lastName" name="last_name" required>
+                    </label>
+                    <label for="email">
+                        Email:
+                        <input type="email" id="email" name="email" required>
+                    </label>
+                    <label for="emailConfirm">
+                        Confirm Email:
+                        <input type="email" id="emailConfirm" name="emailConfirm" required>
+                    </label>
+                    <label for="question">
+                        Your Question:
+                        <textarea id="question" name="Question" rows="4" cols="50" required></textarea>
+                    </label>
+                    
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Welcome to Texas - Contact Us. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        const myForm = document.querySelector('#contactForm');
+
+        const errMsg = {
+            emailConfirm: "Emails don't match",
+        };
+
+        const setError = (elm, message) => {
+            elm.setCustomValidity(message);
+            elm.oninput = () => {
+                elm.setCustomValidity('');
+                elm.oninput = null;
+            };
+        };
+
+        myForm.onsubmit = (e) => {
+            if (myForm.emailConfirm.value !== myForm.email.value) {
+                e.preventDefault();
+                setError(myForm.emailConfirm, errMsg.emailConfirm);
+                myForm.reportValidity();
+            }
+        };
+    </script>
+</body>
+</html>
