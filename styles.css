@@ -228,6 +228,7 @@ footer {
     background: linear-gradient(135deg, #004080 0%, #002147 100%);
     color: white;
     padding: 5px;
+    border-radius: 8px;
 }
 
 form {
