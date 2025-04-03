@@ -12,7 +12,6 @@
             <h1>
                 <img src="images/logo.jpg" alt="Texas Logo" class="logo" />
                 Welcome to Texas
-                <img src="images/logo.jpg" alt="Texas Logo" class="logo right" />
             </h1>
             <nav>
                 <ul>
@@ -25,49 +24,113 @@
             </nav>
         </header>
         <aside>
-            <h3>Quick Facts</h3>
+            <h3>Did You Know?</h3>
+             <!-- In capital.html -->
+             <div class="weather-widget" data-city="Austin">
+                <h4>Current Weather</h4>
+                <div class="weather-content">
+                <img class="weather-icon" src="" alt="Weather icon">
+                <div class="weather-details">
+                    <span class="weather-temp">--°F</span>
+                    <span class="weather-desc">Loading...</span>
+                </div>
+                </div>
+            </div>
+            
+            <!-- In irving.html -->
+            <div class="weather-widget" data-city="Irving">
+            
+            <!-- In fortworth.html -->
+            <div class="weather-widget" data-city="Fort Worth">
             <p>Nickname: Texas is known as "Lone Star State" because of its Lone Star Flag.</p>
-            <p>History: Texas was an independant nation, the Republic of Texas, after winning independance from Mexico in 1836. it became the 28th states in the 1845</p>
-            <ol>
+            <p>History: Texas was an independent nation, the Republic of Texas, after winning independence from Mexico in 1836. It became the 28th state in 1845.</p>
+            <ul>
                 <li><strong>Capital:</strong> Austin</li>
                 <li><strong>Largest City:</strong> Houston</li>
                 <li><strong>Population:</strong> Over 29 million</li>
-            </ol>
+            </ul>
         </aside>
         <main>
             <section>
-                <h2>Introduction to Texas</h2>
-                <div>
-                    <p><span id="highlight">Texas</span> is a state in the South region of the United States. It is the third-largest U.S. state and in second position by population size.</p>
+                <h2>Explore Texas Cities</h2>
+                <section class="texas-map-section">
+                    <div class="interactive-map">
+                        <!-- SVG Texas Map with Paths -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" class="texas-map">
+                            <!-- Texas Outline -->
+                            <path class="state-outline" d="M150,100 L300,50 L500,80 L700,150 L650,400 L500,550 L300,500 L100,400 Z"/>
+                            
+                            <!-- City Markers -->
+                            <g class="city-marker" data-city="austin">
+                                <circle cx="400" cy="350" r="15" fill="#004080" stroke="#fff" stroke-width="2"/>
+                                <text x="400" y="380" text-anchor="middle" fill="#004080" font-weight="bold">Austin</text>
+                            </g>
+                            
+                            <g class="city-marker" data-city="irving">
+                                <circle cx="350" cy="250" r="12" fill="#e63946" stroke="#fff" stroke-width="2"/>
+                                <text x="350" y="280" text-anchor="middle" fill="#e63946" font-weight="bold">Irving</text>
+                            </g>
+                            
+                            <g class="city-marker" data-city="fortworth">
+                                <circle cx="300" cy="200" r="12" fill="#28a745" stroke="#fff" stroke-width="2"/>
+                                <text x="300" y="230" text-anchor="middle" fill="#28a745" font-weight="bold">Fort Worth</text>
+                            </g>
+                        </svg>
+                        
+                        <!-- Map Legend -->
+                        <div class="map-legend">
+                            <h4>Featured Cities:</h4>
+                            <ul>
+                                <li><span class="legend-color" style="background:#004080"></span> Austin (Capital)</li>
+                                <li><span class="legend-color" style="background:#e63946"></span> Irving</li>
+                                <li><span class="legend-color" style="background:#28a745"></span> Fort Worth</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <div class="city-cards">
+                    <!-- Austin Card -->
+                    <div class="city-card" data-city="austin">
+                        <img src="images/austin-card.jpg" alt="Austin skyline" loading="lazy">
+                        <div class="card-content">
+                            <h3>Austin</h3>
+                            <p>The live music capital with vibrant culture and tech innovation.</p>
+                            <div class="card-stats">
+                                <span>⭐ 4.8</span>
+                                <span>👪 964K</span>
+                            </div>
+                            <a href="capital.html" class="card-button">Explore</a>
+                        </div>
+                    </div>
+              
+                    <!-- Irving Card -->
+                    <div class="city-card" data-city="irving">
+                        <img src="images/irving-card.jpg" alt="Irving skyline" loading="lazy">
+                        <div class="card-content">
+                            <h3>Irving</h3>
+                            <p>Business hub with world-class attractions and diverse communities.</p>
+                            <div class="card-stats">
+                                <span>⭐ 4.6</span>
+                                <span>👪 240K</span>
+                            </div>
+                            <a href="irving.html" class="card-button">Explore</a>
+                        </div>
+                    </div>
+              
+                    <!-- Fort Worth Card -->
+                    <div class="city-card" data-city="fortworth">
+                        <img src="images/fortworth-card.jpg" alt="Fort Worth stockyards" loading="lazy">
+                        <div class="card-content">
+                            <h3>Fort Worth</h3>
+                            <p>Where cowboy culture meets modern arts and entertainment.</p>
+                            <div class="card-stats">
+                                <span>⭐ 4.7</span>
+                                <span>👪 935K</span>
+                            </div>
+                            <a href="fortworth.html" class="card-button">Explore</a>
+                        </div>
+                    </div>
                 </div>
-                <table>
-                    <caption>Major Cities in Texas</caption>
-                    <thead>
-                        <tr>
-                            <th>City</th>
-                            <th>Population</th>
-                            <th>Incorporation Year</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Austin</td>
-                            <td>964,000</td>
-                            <td>1839</td>
-                        </tr>
-                        <tr>
-                            <td>Irving</td>
-                            <td>240,000</td>
-                            <td>1914</td>
-                        </tr>
-                        <tr>
-                            <td>Fort Worth</td>
-                            <td>935,000</td>
-                            <td>1849</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <img src="images/texas-welcome.jpg" alt="Welcome to Texas" class="main-image">
             </section>
         </main>
         <footer>
@@ -80,5 +143,99 @@
             </button>
         </footer>
     </div>
+
+    <script>
+        // Weather Widget
+        document.addEventListener('DOMContentLoaded', function() {
+            const weatherWidget = document.querySelector('.weather-widget');
+            const city = weatherWidget.getAttribute('data-city').toLowerCase();
+            
+            // DOM elements
+            const tempEl = weatherWidget.querySelector('.weather-temp');
+            const descEl = weatherWidget.querySelector('.weather-desc');
+            const iconEl = weatherWidget.querySelector('.weather-icon');
+
+            // Loading state
+            tempEl.textContent = '--°F';
+            descEl.textContent = 'Loading...';
+            iconEl.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+PHBhdGggZD0iTTEyIDJMNi41IDEyLjVMOUwxMy41IDVMMTUgMTguNUwxOCAxMC41TDEyIDJ6Ii8+PC9zdmc+';
+
+            // Fetch via proxy
+            fetch(`/weather-proxy.php?city=${encodeURIComponent(city)}`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Weather service unavailable');
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) throw new Error(data.error);
+                    
+                    tempEl.textContent = `${Math.round(data.main.temp)}°F`;
+                    descEl.textContent = data.weather[0].description;
+                    iconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                    iconEl.alt = data.weather[0].main;
+                })
+                .catch(error => {
+                    console.error('Weather error:', error);
+                    descEl.textContent = error.message;
+                    iconEl.src = '';
+                });
+        });
+
+        // City Cards Interaction
+        document.querySelectorAll('.city-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+
+            card.addEventListener('click', () => {
+                const city = card.getAttribute('data-city');
+                console.log(`Selected ${city}`);
+            });
+        });
+
+        // Interactive Map
+        document.addEventListener('DOMContentLoaded', () => {
+            const cityMarkers = document.querySelectorAll('.city-marker');
+            const stateOutline = document.querySelector('.state-outline');
+            
+            cityMarkers.forEach(marker => {
+                marker.addEventListener('mouseenter', () => {
+                    marker.querySelector('circle').setAttribute('fill', '#ffcc00');
+                    stateOutline.setAttribute('fill', 'rgba(0, 64, 128, 0.2)');
+                });
+                
+                marker.addEventListener('mouseleave', () => {
+                    const city = marker.getAttribute('data-city');
+                    const originalColor = {
+                        'austin': '#004080',
+                        'irving': '#e63946',
+                        'fortworth': '#28a745'
+                    }[city];
+                    marker.querySelector('circle').setAttribute('fill', originalColor);
+                    stateOutline.setAttribute('fill', 'rgba(0, 64, 128, 0.1)');
+                });
+                
+                marker.addEventListener('click', () => {
+                    const city = marker.getAttribute('data-city');
+                    const cityPages = {
+                        'austin': 'capital.html',
+                        'irving': 'irving.html',
+                        'fortworth': 'fortworth.html'
+                    };
+                    window.location.href = cityPages[city];
+                });
+            });
+            
+            // Pulse animation for capital
+            const austinMarker = document.querySelector('[data-city="austin"] circle');
+            setInterval(() => {
+                austinMarker.style.transform = austinMarker.style.transform === 'scale(1.1)' ? 'scale(1)' : 'scale(1.1)';
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
