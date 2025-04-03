@@ -61,6 +61,7 @@ main{
     gap: 20px;
     border-radius: 4px;
     margin: 20px 0;
+    border-radius: 8px;
 }
 
 section {
