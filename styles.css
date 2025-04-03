@@ -225,7 +225,7 @@ aside ul:last-child {
 
 footer {
     text-align: center;
-     background: linear-gradient(135deg, #004080 0%, #002147 100%);
+    background: linear-gradient(135deg, #004080 0%, #002147 100%);
     color: white;
     padding: 5px;
 }
