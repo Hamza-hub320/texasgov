@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #004080;
+    background: linear-gradient(135deg, #004080 0%, #002147 100%);
     color: white;
     text-align: center;
     padding: 10px 20px;
@@ -67,6 +67,7 @@ section {
     flex:3;
     background-color: #fff;
     padding: 20px;
+    border-radius: 8px;
 }
 
 section h2 {
@@ -224,7 +225,7 @@ aside ul:last-child {
 
 footer {
     text-align: center;
-    background-color: #004080;
+     background: linear-gradient(135deg, #004080 0%, #002147 100%);
     color: white;
     padding: 5px;
 }
