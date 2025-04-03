@@ -22,6 +22,23 @@
         </header>
         <aside>
             <h3>Did You Know?</h3>
+             <!-- In capital.html -->
+             <div class="weather-widget" data-city="Austin">
+                <h4>Current Weather</h4>
+                <div class="weather-content">
+                <img class="weather-icon" src="" alt="Weather icon">
+                <div class="weather-details">
+                    <span class="weather-temp">--°F</span>
+                    <span class="weather-desc">Loading...</span>
+                </div>
+                </div>
+            </div>
+            
+            <!-- In irving.html -->
+            <div class="weather-widget" data-city="Irving">
+            
+            <!-- In fortworth.html -->
+            <div class="weather-widget" data-city="Fort Worth">
             <p>Fort Worth is home to the world-famous Fort Worth Stockyards, where you can experience authentic Texas cowboy culture.</p>
             <p>Nicknamed "Cowtown," the city also boasts one of the largest arts districts in the United States.</p>
             <ul>
@@ -45,7 +62,7 @@
                     <li><strong>Classification:</strong> Urban</li>
                     <li><strong>Average Income:</strong> Slightly below the state average</li>
                 </ul>
-                <img src="images/fortworth.jpg" alt="Fort Worth Stockyards">
+                <img src="images/fortworth-card.jpg"" alt="Fort Worth Stockyards">
             </section>
         </main>
         <footer>
@@ -53,5 +70,41 @@
         </footer>
     </div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const weatherWidget = document.querySelector('.weather-widget');
+    const city = weatherWidget.getAttribute('data-city').toLowerCase();
+    
+    // DOM elements
+    const tempEl = weatherWidget.querySelector('.weather-temp');
+    const descEl = weatherWidget.querySelector('.weather-desc');
+    const iconEl = weatherWidget.querySelector('.weather-icon');
+
+    // Loading state
+    tempEl.textContent = '--°F';
+    descEl.textContent = 'Loading...';
+    iconEl.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+PHBhdGggZD0iTTEyIDJMNi41IDEyLjVMOUwxMy41IDVMMTUgMTguNUwxOCAxMC41TDEyIDJ6Ii8+PC9zdmc+';
+
+    // Fetch via proxy
+    fetch(`/weather-proxy.php?city=${encodeURIComponent(city)}`)
+        .then(response => {
+            if (!response.ok) throw new Error('Weather service unavailable');
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) throw new Error(data.error);
+            
+            tempEl.textContent = `${Math.round(data.main.temp)}°F`;
+            descEl.textContent = data.weather[0].description;
+            iconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            iconEl.alt = data.weather[0].main;
+        })
+        .catch(error => {
+            console.error('Weather error:', error);
+            descEl.textContent = error.message;
+            iconEl.src = '';
+        });
+    });
+</script>
 </html>
 </html>
