@@ -283,6 +283,11 @@ ul, p {
     border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
     padding-bottom: 8px;
   }
+
+.weather-widget.weather-error {
+    background: rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.3);
+}
   
   .weather-content {
     display: flex;
