@@ -1,39 +1,23 @@
 <?php
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
-header('Access-Control-Allow-Methods: GET');
+header('Access-Control-Allow-Origin: *');
 
-// Validate input
 $validCities = ['austin', 'irving', 'fort worth'];
-$city = strtolower(trim($_GET['city'] ?? ''));
+$city = strtolower($_GET['city'] ?? '');
 
 if (!in_array($city, $validCities)) {
     http_response_code(400);
-    die(json_encode(['error' => 'Invalid city specified']));
+    die(json_encode(['error' => 'Invalid city']));
 }
 
-// Securely fetch weather data
-$apiKey = '161a8198e9ce488490662508250204'; // Your OpenWeatherMap key
-$apiUrl = sprintf(
-    'https://api.openweathermap.org/data/2.5/weather?q=%s,Texas&units=imperial&appid=%s',
-    urlencode($city),
-    $apiKey
-);
+$apiKey = '161a8198e9ce488490662508250204';
+$apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=$city,Texas&units=imperial&appid=$apiKey";
 
-$ch = curl_init();
-curl_setopt_array($ch, [
-    CURLOPT_URL => $apiUrl,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_FAILONERROR => true,
-    CURLOPT_TIMEOUT => 5
-]);
-
-$response = curl_exec($ch);
-if (curl_errno($ch)) {
+$response = file_get_contents($apiUrl);
+if ($response === FALSE) {
     http_response_code(502);
     die(json_encode(['error' => 'Weather service unavailable']));
 }
 
-curl_close($ch);
 echo $response;
 ?>
