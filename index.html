@@ -145,7 +145,7 @@
     </div>
 
     <script>
-        // Weather Widget
+        // Replace your current weather widget script with this:
         document.addEventListener('DOMContentLoaded', function() {
             const weatherWidget = document.querySelector('.weather-widget');
             const city = weatherWidget.getAttribute('data-city').toLowerCase();
@@ -154,21 +154,29 @@
             const tempEl = weatherWidget.querySelector('.weather-temp');
             const descEl = weatherWidget.querySelector('.weather-desc');
             const iconEl = weatherWidget.querySelector('.weather-icon');
-
+        
             // Loading state
             tempEl.textContent = '--°F';
             descEl.textContent = 'Loading...';
             iconEl.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+PHBhdGggZD0iTTEyIDJMNi41IDEyLjVMOUwxMy41IDVMMTUgMTguNUwxOCAxMC41TDEyIDJ6Ii8+PC9zdmc+';
-
-            // Fetch via proxy
-            fetch(`/weather-proxy.php?city=${encodeURIComponent(city)}`)
+        
+            // First try local proxy, fallback to direct API if needed
+            const apiKey = '161a8198e9ce488490662508250204'; // Your OpenWeatherMap key
+            const proxyUrl = `/weather-proxy.php?city=${encodeURIComponent(city)}`;
+            const directUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},Texas&units=imperial&appid=${apiKey}`;
+            
+            // Try proxy first, then fallback to direct API
+            fetch(proxyUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('Proxy failed, trying direct API');
+                    return response.json();
+                })
+                .catch(() => fetch(directUrl))
                 .then(response => {
                     if (!response.ok) throw new Error('Weather service unavailable');
                     return response.json();
                 })
                 .then(data => {
-                    if (data.error) throw new Error(data.error);
-                    
                     tempEl.textContent = `${Math.round(data.main.temp)}°F`;
                     descEl.textContent = data.weather[0].description;
                     iconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
