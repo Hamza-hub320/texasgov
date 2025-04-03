@@ -53,6 +53,7 @@ main {
     max-width: 1200px;
     margin: 20px 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 main{
@@ -61,7 +62,6 @@ main{
     gap: 20px;
     border-radius: 4px;
     margin: 20px 0;
-    border-radius: 8px;
 }
 
 section {
